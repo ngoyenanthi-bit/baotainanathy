@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Báo tai nạn</title>
+
+<style>
+body {
+  font-family: Arial;
+  text-align: center;
+  padding: 30px;
+  background: #f5f5f5;
+}
+button {
+  font-size: 22px;
+  padding: 20px;
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 12px;
+}
+</style>
+
+</head>
+
+<body>
+
+<h2>🚨 BÁO TAI NẠN</h2>
+<p>Bấm 1 lần để gửi vị trí</p>
+
+<button onclick="send()">📍 GỬI VỊ TRÍ</button>
+
+<script>
+function send(){
+ navigator.geolocation.getCurrentPosition(function(pos){
+
+   let lat = pos.coords.latitude;
+   let lon = pos.coords.longitude;
+
+   let map = "https://maps.google.com/?q=" + lat + "," + lon;
+
+   let text = "🚨 Báo tai nạn tại: " + map;
+
+   let zalo = "https://zalo.me/share?text=" + encodeURIComponent(text);
+
+   window.location.href = zalo;
+
+ }, function(){
+   alert("Hãy bật GPS");
+ });
+}
+</script>
+
+</body>
+</html>
